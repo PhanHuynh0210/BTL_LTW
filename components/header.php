@@ -1,18 +1,40 @@
 <?php
-$currentPage = basename($_SERVER['PHP_SELF']); // Get current page name
-
-// Create nav items with dynamic "active" class
+$currentPage = basename($_SERVER['PHP_SELF']);
 $navItems = [
     'index.php' => 'Trang chủ',
-    'products.php' => 'Sản Phẩm',
+    'products.php' => [
+        'label' => 'Sản Phẩm',
+        'dropdown' => [
+            'phones.php' => 'Điện Thoại',
+            'laptops.php' => 'Laptop',
+            'accessories.php' => 'Phụ Kiện'
+        ]
+    ],
+    'news.php' => 'Tin Tức',
     'about.php' => 'Về Chúng Tôi',
     'contact.php' => 'Liên Hệ'
 ];
 
 $navHtml = '';
 foreach ($navItems as $file => $label) {
-    $activeClass = $currentPage === $file ? 'active' : '';
-    $navHtml .= "<a href=\"$file\" class=\"fw-medium $activeClass\">$label</a>";
+    if (is_array($label)) {
+        $activeClass = $currentPage === $file || in_array($currentPage, array_keys($label['dropdown'])) ? 'active' : '';
+        $navHtml .= '
+        <div class="dropdown me-3">
+            <a class="fw-medium nav-link dropdown-toggle ' . $activeClass . '" href="' . $file . '" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ' . $label['label'] . '
+            </a>
+            <ul class="dropdown-menu">';
+        foreach ($label['dropdown'] as $subFile => $subLabel) {
+            $subActive = $currentPage === $subFile ? 'active' : '';
+            $navHtml .= '<li><a class="dropdown-item ' . $subActive . '" href="' . $subFile . '">' . $subLabel . '</a></li>';
+        }
+        $navHtml .= '</ul>
+        </div>';
+    } else {
+        $activeClass = $currentPage === $file ? 'active' : '';
+        $navHtml .= "<a href=\"$file\" class=\"fw-medium me-3 $activeClass\">$label</a>";
+    }
 }
 
 echo <<<HTML
@@ -26,14 +48,14 @@ echo <<<HTML
             </div>
 
             <!-- Navigation -->
-            <nav class="contact d-flex flex-wrap justify-content-center mb-2 mb-md-0">
+            <nav class="contact d-flex flex-wrap justify-content-center align-items-center mb-2 mb-md-0">
                 $navHtml
             </nav>
 
             <!-- Icons and Login -->
             <div class="contact d-flex align-items-center justify-content-end">
-                <a href="#"><i class="fa-regular fa-circle-question fa-lg"></i></a>
-                <a href="#">
+                <a href="#" class="me-3"><i class="fa-regular fa-circle-question fa-lg"></i></a>
+                <a href="#" class="me-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor">
