@@ -1,5 +1,5 @@
 .product-carousel {
-    border: 6px solid lightblue !important;
+    border: 6px solid lightblue;
     border-radius: 12px;
     background-color: #f9f9f9;
     padding: 20px;
@@ -24,6 +24,7 @@
 .card-link {
     position: relative;
     display: block;
+    text-decoration: none;
 }
 
 .card-link::before {
@@ -153,69 +154,4 @@
 #scroll-to-bottom:active {
     transform: scale(0.95);
     filter: brightness(0.8);
-}
-
-.product-carousel {
-    border: 6px solid lightblue !important;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-    padding: 20px;
-}
-
-/* Card Style */
-.card {
-    position: relative;
-    overflow: hidden;
-    border: none;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-/* Circle + Arrow on Hover */
-.card-link {
-    position: relative;
-    display: block;
-}
-
-.card-link::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60px;
-    height: 60px;
-    background-color: lightblue;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.4s ease;
-    z-index: 1;
-}
-
-.card-link::after {
-    content: '➔';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: white;
-    font-size: 24px;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.4s ease;
-    z-index: 2;
-}
-
-/* On hover, show circle and arrow */
-.card-link:hover::before,
-.card-link:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* Smooth carousel transition */
-.carousel-item {
-    transition: transform 0.6s ease-in-out;
 }
