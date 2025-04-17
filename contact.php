@@ -12,7 +12,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <link rel="stylesheet" href="components/header.css">
-    <link rel="stylesheet" href="pages/contact/contact.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <!-- <link rel="stylesheet" href="pages/contact/contact.css"> -->
 </head>
 
 <body>
@@ -20,7 +21,6 @@
     <?php
     include("components/header.php")
     ?>
-
     <div class="container my-5">
         <img src="assets/contact.jpg" alt="contact" class="img-fluid mb-4 rounded shadow">
 

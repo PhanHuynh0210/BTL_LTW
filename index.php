@@ -6,39 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone Store</title>
     <link rel="icon" type="image/x-icon" href="assets/logo.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <link rel="stylesheet" href="components/header.css">
-    <link rel="stylesheet" href="pages/main/main.css">
-    
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
     <!--Start Nut di chuyen-->
     <div id="btnLenXuong">
         <img id="btn-top" src="assets/slideup.png" alt="slideup">
-        <img id="scroll-to-bottom" onclick="scrollToBottom()" src="assets/slidedown.png"
-            alt="slidedown">
+        <img id="scroll-to-bottom" onclick="scrollToBottom()" src="assets/slidedown.png" alt="slidedown">
     </div>
-
     <!--End nut di chuyen-->
 
     <!--Header-->
-    <?php
-    include("components/header.php")
-    ?>
+    <?php include("components/header.php") ?>
 
     <!-- Banner-carousel -->
-
     <div class="banner-carousel">
         <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <!-- <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -59,8 +51,152 @@
         </div>
     </div>
 
-    <!-- section-nav -->
+    <!-- SALE-carousel -->
+    <div class="container my-5">
+        <div class="product-carousel p-4 position-relative">
 
+            <!-- Title -->
+            <h2 class="text-center mb-4 fw-bold">
+                SẢN PHẨM GIÁ SỐC
+            </h2>
+
+            <!-- Carousel -->
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <!-- Product 1 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/iphone2.webp" class="card-img-top" alt="iPhone 12">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">iPhone 12 128GB (Chính Hãng VN/A)</h5>
+                                            <p class="text-danger fw-bold">19,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/samsung2.webp" class="card-img-top" alt="iPhone X">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">iPhone X 256GB (Chưa Active) mới 100% fullbox</h5>
+                                            <p class="text-danger fw-bold">15,390,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Samsung S9 Plus">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">Samsung Galaxy S9 Plus 256GB 2 Sim Mới 100%</h5>
+                                            <p class="text-danger fw-bold">7,290,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 4 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/vivo2.webp" class="card-img-top" alt="Samsung S20 Plus">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">Samsung Galaxy S20 Plus (128GB) Công Ty mới</h5>
+                                            <p class="text-danger fw-bold">13,990,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- More slides if needed -->
+                    <div class="carousel-item">
+                        <div class="row g-3">
+                            <!-- Product 5 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/oppo2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/iphone2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/samsung2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Add more products if needed -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- section-nav -->
     <div class="container my-5 overview">
         <h1 class="text-center mb-4">Các hãng điện thoại chúng tôi đang kinh doanh</h1>
         <div class="overview_img">
@@ -88,7 +224,6 @@
     </div>
 
     <!-- IPHONE-section -->
-
     <div class="phone_section container py-5 shadow-sm" id="iphone_section">
         <h1 class="text-center mb-4">iPhone</h1>
 
@@ -117,7 +252,6 @@
     </div>
 
     <!-- SAMSUNG-section -->
-
     <div class="phone_section container py-5 shadow-sm" id="samsung_section">
         <h1 class="text-center mb-4">Samsung</h1>
 
@@ -130,7 +264,8 @@
                     Samsung là thương hiệu điện thoại thông minh hàng đầu đến từ Hàn Quốc,
                     nổi bật với thiết kế hiện đại, màn hình sắc nét và công nghệ tiên tiến.
                     Các dòng sản phẩm như Galaxy S và Galaxy Z luôn đi đầu trong đổi mới với tính năng gập mở,
-                    camera chất lượng cao và hiệu năng mạnh mẽ, đáp ứng mọi nhu cầu từ công việc đến giải trí của người dùng.
+                    camera chất lượng cao và hiệu năng mạnh mẽ, đáp ứng mọi nhu cầu từ công việc đến giải trí của người
+                    dùng.
                 </p>
             </div>
         </div>
@@ -146,7 +281,6 @@
     </div>
 
     <!-- XIAOMI-section -->
-
     <div class="phone_section container py-5 shadow-sm" id="xiaomi_section">
         <h1 class="text-center mb-4">Xiaomi</h1>
 
@@ -176,7 +310,6 @@
     </div>
 
     <!-- VIVO-section -->
-
     <div class="phone_section container py-5 shadow-sm" id="vivo_section">
         <h1 class="text-center mb-4">Vivo</h1>
 
@@ -188,7 +321,8 @@
                 <p class="fs-5">
                     Vivo là thương hiệu điện thoại thông minh nổi bật đến từ Trung Quốc,
                     gây ấn tượng với thiết kế thời trang, camera chất lượng cao và công nghệ âm thanh tiên tiến.
-                    Các dòng sản phẩm của Vivo không chỉ đáp ứng tốt nhu cầu giải trí, chụp ảnh mà còn có hiệu năng ổn định,
+                    Các dòng sản phẩm của Vivo không chỉ đáp ứng tốt nhu cầu giải trí, chụp ảnh mà còn có hiệu năng ổn
+                    định,
                     giao diện thân thiện và mức giá hợp lý, phù hợp với nhiều đối tượng người dùng.
                 </p>
             </div>
@@ -205,7 +339,6 @@
     </div>
 
     <!-- OPPO-section -->
-
     <div class="phone_section container py-5 shadow-sm" id="oppo_section">
         <h1 class="text-center mb-4">Oppo</h1>
 
@@ -232,6 +365,8 @@
             </div>
         </div>
     </div>
+
+    <?php include "components/footer.php"; ?>
 
     <script>
         const btnTop = document.getElementById("btn-top");
@@ -270,9 +405,7 @@
         });
     </script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 
 </html>
