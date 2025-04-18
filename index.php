@@ -30,7 +30,7 @@
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <!-- <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -189,6 +189,288 @@
                     <span class="carousel-control-prev-icon"></span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWPRODUCT-carousel -->
+    <div class="container my-5">
+        <div class="product-carousel p-4 position-relative">
+
+            <!-- Title -->
+            <h2 class="text-center mb-4 fw-bold">
+                SẢN PHẨM MỚI VỀ
+            </h2>
+
+            <!-- Carousel -->
+            <div id="newproductCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <!-- Product 1 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/iphone2.webp" class="card-img-top" alt="iPhone 12">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">iPhone 12 128GB (Chính Hãng VN/A)</h5>
+                                            <p class="text-danger fw-bold">19,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/samsung2.webp" class="card-img-top" alt="iPhone X">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">iPhone X 256GB (Chưa Active) mới 100% fullbox</h5>
+                                            <p class="text-danger fw-bold">15,390,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Samsung S9 Plus">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">Samsung Galaxy S9 Plus 256GB 2 Sim Mới 100%</h5>
+                                            <p class="text-danger fw-bold">7,290,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 4 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/vivo2.webp" class="card-img-top" alt="Samsung S20 Plus">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">Samsung Galaxy S20 Plus (128GB) Công Ty mới</h5>
+                                            <p class="text-danger fw-bold">13,990,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- More slides if needed -->
+                    <div class="carousel-item">
+                        <div class="row g-3">
+                            <!-- Product 5 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/oppo2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/iphone2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/samsung2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <span class="badge bg-success">HOT</span>
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-danger fw-bold">6,890,000 ₫</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Add more products if needed -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#newproductCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#newproductCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWS-carousel -->
+    <div class="container my-5">
+        <div class="product-carousel p-4 position-relative">
+
+            <!-- Title -->
+            <h2 class="text-center mb-4 fw-bold">
+                BLOG CÔNG NGHỆ
+            </h2>
+
+            <!-- Carousel -->
+            <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <!-- Product 1 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/iphone2.webp" class="card-img-top" alt="iPhone 12">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">iPhone 12 128GB (Chính Hãng VN/A)</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/samsung2.webp" class="card-img-top" alt="iPhone X">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">iPhone X 256GB (Chưa Active) mới 100% fullbox</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Samsung S9 Plus">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">Samsung Galaxy S9 Plus 256GB 2 Sim Mới 100%</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Product 4 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/vivo2.webp" class="card-img-top" alt="Samsung S20 Plus">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">Samsung Galaxy S20 Plus (128GB) Công Ty mới</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- More slides if needed -->
+                    <div class="carousel-item">
+                        <div class="row g-3">
+                            <!-- Product 5 -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/oppo2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/iphone2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/samsung2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <a href="#" class="card-link">
+                                    <div class="card h-100">
+                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Oppo Reno5">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
+                                            <p class="text-secondary fw-bold">15/9/2004</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Add more products if needed -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
 
