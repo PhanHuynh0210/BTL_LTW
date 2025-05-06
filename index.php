@@ -1,3 +1,31 @@
+<?php
+require 'database.php';
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$sql = "SELECT * FROM posts";
+
+if (!empty($search)) {
+    $sql .= " WHERE title LIKE :keyword OR description LIKE :keyword";
+}
+$stmt = $pdo->prepare($sql);
+
+if (!empty($search)) {
+    $stmt->execute(['keyword' => "%$search%"]);
+} else {
+    $stmt->execute();
+}
+
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<?php
+require 'database.php';
+
+$sql = "SELECT * FROM banner";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$carouselImages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,19 +55,30 @@
     <!-- Banner-carousel -->
     <div class="banner-carousel">
         <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Indicators -->
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <!-- <button type="button" data-bs-target="#banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+                <?php foreach ($carouselImages as $index => $image): ?>
+                    <button type="button"
+                        data-bs-target="#banner-carousel"
+                        data-bs-slide-to="<?= $index ?>"
+                        <?= $index === 0 ? 'class="active" aria-current="true"' : '' ?>
+                        aria-label="Slide <?= $index + 1 ?>"></button>
+                <?php endforeach; ?>
             </div>
+
+            <!-- Carousel items -->
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="assets/Banner1.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/Banner2.png" class="d-block w-100" alt="...">
-                </div>
+                <?php foreach ($carouselImages as $index => $image): ?>
+                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                        <img src="<?= htmlspecialchars($image['image_path']) ?>"
+                            class="d-block w-100"
+                            alt="<?= htmlspecialchars($image['alt_text']) ?>">
+                    </div>
+                <?php endforeach; ?>
             </div>
+
+            <!-- Controls -->
             <button class="carousel-control-prev" type="button" data-bs-target="#banner-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -48,6 +87,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+
         </div>
     </div>
 
@@ -354,116 +394,27 @@
             <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
 
                 <div class="carousel-inner">
-
-                    <div class="carousel-item active">
-                        <div class="row g-3">
-                            <!-- Product 1 -->
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/iphone2.webp" class="card-img-top" alt="iPhone 12">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">iPhone 12 128GB (Chính Hãng VN/A)</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
+                    <?php
+                    $chunks = array_chunk($posts, 4); // 4 posts per slide
+                    foreach ($chunks as $index => $chunk): ?>
+                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                            <div class="row g-3">
+                                <?php foreach ($chunk as $post): ?>
+                                    <div class="col-12 col-md-6 col-lg-3">
+                                        <a href="news-detail.php?id=<?= $post['id'] ?>" class="card-link">
+                                            <div class="card h-100">
+                                                <img src="<?= htmlspecialchars($post['image']) ?>" class="card-img-top" alt="<?= htmlspecialchars($post['title']) ?>">
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title mt-2"><?= htmlspecialchars($post['title']) ?></h5>
+                                                    <p class="text-secondary fw-bold"><?= date('d/m/Y', strtotime($post['created_at'] ?? 'now')) ?></p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
+                                <?php endforeach; ?>
                             </div>
-
-                            <!-- Product 2 -->
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/samsung2.webp" class="card-img-top" alt="iPhone X">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">iPhone X 256GB (Chưa Active) mới 100% fullbox</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <!-- Product 3 -->
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Samsung S9 Plus">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">Samsung Galaxy S9 Plus 256GB 2 Sim Mới 100%</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <!-- Product 4 -->
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/vivo2.webp" class="card-img-top" alt="Samsung S20 Plus">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">Samsung Galaxy S20 Plus (128GB) Công Ty mới</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
                         </div>
-                    </div>
-
-                    <!-- More slides if needed -->
-                    <div class="carousel-item">
-                        <div class="row g-3">
-                            <!-- Product 5 -->
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/oppo2.webp" class="card-img-top" alt="Oppo Reno5">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/iphone2.webp" class="card-img-top" alt="Oppo Reno5">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/samsung2.webp" class="card-img-top" alt="Oppo Reno5">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="#" class="card-link">
-                                    <div class="card h-100">
-                                        <img src="assets/xiaomi2.webp" class="card-img-top" alt="Oppo Reno5">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title mt-2">OPPO Reno5 4G (8GB – 128GB) Công Ty mới fullbox</h5>
-                                            <p class="text-secondary fw-bold">15/9/2004</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- Add more products if needed -->
-                        </div>
-                    </div>
-
+                    <?php endforeach; ?>
                 </div>
 
                 <!-- Controls -->
@@ -478,8 +429,88 @@
         </div>
     </div>
 
+    <?php
+    require 'database.php';  // Include the database connection file
+
+    // Fetch all phone brands
+    $sql_brands = "SELECT * FROM phone_brands";
+    $stmt_brands = $pdo->prepare($sql_brands);
+    $stmt_brands->execute();
+    $brands = $stmt_brands->fetchAll(PDO::FETCH_ASSOC);
+
+    // Start the section for phone brands
+    echo '<div class="container my-5 overview">';
+    echo '<h1 class="text-center mb-4">Các hãng điện thoại chúng tôi đang kinh doanh</h1>';
+    echo '<div class="overview_img">';
+
+    // Loop through each brand and generate HTML for the brand box
+    foreach ($brands as $brand) {
+        $brand_name = $brand['name'];
+        $brand_id = $brand['id'];
+
+        // Fetch the first image for the brand (for the thumbnail)
+        $sql_images = "SELECT * FROM brand_images WHERE brand_id = :brand_id LIMIT 1";
+        $stmt_images = $pdo->prepare($sql_images);
+        $stmt_images->execute(['brand_id' => $brand_id]);
+        $image = $stmt_images->fetch(PDO::FETCH_ASSOC);
+
+        // Generate the brand box with image and clickable link
+        echo '<div class="brand-box position-relative">';
+        echo '<img src="' . $image['image_path'] . '" alt="' . strtolower($brand_name) . '">';
+        echo '<a class="brand-name" onclick="window.location.href=\'#' . strtolower($brand_name) . '_section\'">' . strtoupper($brand_name) . '</a>';
+        echo '</div>';
+    }
+
+    echo '</div>';
+    echo '</div>';
+    ?>
+
+    <?php
+    require 'database.php';  // Include your database connection file
+
+    // Fetch all brands from the phone_brands table
+    $sql_brands = "SELECT * FROM phone_brands";
+    $stmt_brands = $pdo->query($sql_brands);
+    $brands = $stmt_brands->fetchAll(PDO::FETCH_ASSOC);
+
+    // Loop through the brands
+    foreach ($brands as $brand) {
+        // Fetch associated images for the current brand
+        $sql_images = "SELECT * FROM brand_images WHERE brand_id = :brand_id";
+        $stmt_images = $pdo->prepare($sql_images);
+        $stmt_images->execute(['brand_id' => $brand['id']]);
+        $images = $stmt_images->fetchAll(PDO::FETCH_ASSOC);
+
+        // Generate the HTML for each brand section
+        echo '<div class="phone_section container py-5 shadow-sm" id="' . strtolower($brand['name']) . '_section">';
+        echo '<h1 class="text-center mb-4">' . $brand['name'] . '</h1>';
+
+        echo '<div class="row align-items-center mb-4 ip_header">';
+        echo '<div class="col-md-5 text-center">';
+        echo '<img src="' . $images[0]['image_path'] . '" alt="' . strtolower($brand['name']) . '" class="img-fluid rounded">';
+        echo '</div>';
+        echo '<div class="col-md-7">';
+        echo '<p class="fs-5">' . $brand['description'] . '</p>';
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="row g-3">';
+        // Loop through the images for the current brand and display them
+        foreach ($images as $index => $image) {
+            // Skip the first image as it has already been displayed above
+            if ($index > 0) {
+                echo '<div class="col-md-6">';
+                echo '<img src="' . $image['image_path'] . '" alt="' . strtolower($brand['name']) . '_ad' . ($index) . '" class="img-fluid rounded shadow-sm">';
+                echo '</div>';
+            }
+        }
+        echo '</div>';
+        echo '</div>';
+    }
+    ?>
+
     <!-- section-nav -->
-    <div class="container my-5 overview">
+    <!-- <div class="container my-5 overview">
         <h1 class="text-center mb-4">Các hãng điện thoại chúng tôi đang kinh doanh</h1>
         <div class="overview_img">
             <div class="brand-box position-relative">
@@ -503,10 +534,10 @@
                 <a class="brand-name" onclick="window.location.href='#oppo_section'">OPPO</a>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- IPHONE-section -->
-    <div class="phone_section container py-5 shadow-sm" id="iphone_section">
+    <!-- <div class="phone_section container py-5 shadow-sm" id="iphone_section">
         <h1 class="text-center mb-4">iPhone</h1>
 
         <div class="row align-items-center mb-4 ip_header">
@@ -531,10 +562,10 @@
                 <img src="assets/ip_add2.avif" alt="ip_add2" class="img-fluid rounded shadow-sm">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- SAMSUNG-section -->
-    <div class="phone_section container py-5 shadow-sm" id="samsung_section">
+    <!-- <div class="phone_section container py-5 shadow-sm" id="samsung_section">
         <h1 class="text-center mb-4">Samsung</h1>
 
         <div class="row align-items-center mb-4 ip_header">
@@ -560,10 +591,10 @@
                 <img src="assets/samsung_ad2.jpg" alt="samsung_ad2" class="img-fluid rounded shadow-sm">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- XIAOMI-section -->
-    <div class="phone_section container py-5 shadow-sm" id="xiaomi_section">
+    <!-- <div class="phone_section container py-5 shadow-sm" id="xiaomi_section">
         <h1 class="text-center mb-4">Xiaomi</h1>
 
         <div class="row align-items-center mb-4 ip_header">
@@ -589,10 +620,10 @@
                 <img src="assets/xiaomi_ad2.jpg" alt="xiaomi_ad2" class="img-fluid rounded shadow-sm">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- VIVO-section -->
-    <div class="phone_section container py-5 shadow-sm" id="vivo_section">
+    <!-- <div class="phone_section container py-5 shadow-sm" id="vivo_section">
         <h1 class="text-center mb-4">Vivo</h1>
 
         <div class="row align-items-center mb-4 ip_header">
@@ -618,10 +649,10 @@
                 <img src="assets/vivo_ad2.jpg" alt="vivo_ad2" class="img-fluid rounded shadow-sm">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- OPPO-section -->
-    <div class="phone_section container py-5 shadow-sm" id="oppo_section">
+    <!-- <div class="phone_section container py-5 shadow-sm" id="oppo_section">
         <h1 class="text-center mb-4">Oppo</h1>
 
         <div class="row align-items-center mb-4 ip_header">
@@ -646,7 +677,7 @@
                 <img src="assets/oppo_ad2.jpg" alt="oppo_ad2" class="img-fluid rounded shadow-sm">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <?php include "components/footer.php"; ?>
 
