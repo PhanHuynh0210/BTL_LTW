@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$dbname = "news";
-$username = "root";              
+$dbname = "test";
+$username = "root";
 $password = "210924";
 
 try {
@@ -10,4 +10,3 @@ try {
 } catch (PDOException $e) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $e->getMessage());
 }
-?>

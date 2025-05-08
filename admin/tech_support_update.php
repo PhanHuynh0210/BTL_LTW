@@ -3,13 +3,13 @@ require '../database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get posted values
-    $north_address = $_POST['tech_support_north'] ?? '';
-    $central_address = $_POST['tech_support_central'] ?? '';
-    $south_address = $_POST['tech_support_south'] ?? '';
+    $north_address = trim($_POST['tech_support_north'] ?? '');
+    $central_address = trim($_POST['tech_support_central'] ?? '');
+    $south_address = trim($_POST['tech_support_south'] ?? '');
 
-    $north_phone = $_POST['tech_support_north_phone'] ?? '';
-    $central_phone = $_POST['tech_support_central_phone'] ?? '';
-    $south_phone = $_POST['tech_support_south_phone'] ?? '';
+    $north_phone = trim($_POST['tech_support_north_phone'] ?? '');
+    $central_phone = trim($_POST['tech_support_central_phone'] ?? '');
+    $south_phone = trim($_POST['tech_support_south_phone'] ?? '');
 
     // Basic validation
     if (empty($north_address) || empty($central_address) || empty($south_address) ||
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo->commit();
 
         // Redirect or success message
-        header("Location: contactpage.controller.php"); // Change if needed
+        header("Location: ../contactpage.controller.php"); // Change if needed
     } catch (PDOException $e) {
         $pdo->rollBack();
         echo "Update failed: " . $e->getMessage();

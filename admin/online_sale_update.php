@@ -3,16 +3,22 @@ require '../database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get form data
-    $online_consultation = $_POST['online_consultation'] ?? '';
-    $online_sales_email = $_POST['online_sales_email'] ?? '';
-    $phone_hanoi = $_POST['phone_hanoi'] ?? '';
-    $phone_danang = $_POST['phone_danang'] ?? '';
-    $phone_hcm = $_POST['phone_hcm'] ?? '';
-    $common_email = $_POST['common_email'] ?? '';
+    $online_consultation = trim($_POST['online_consultation'] ?? '');
+    $online_sales_email = trim($_POST['online_sales_email'] ?? '');
+    $phone_hanoi = trim($_POST['phone_hanoi'] ?? '');
+    $phone_danang = trim($_POST['phone_danang'] ?? '');
+    $phone_hcm = trim($_POST['phone_hcm'] ?? '');
+    $common_email = trim($_POST['common_email'] ?? '');
 
     // Validate input data
     if (empty($online_consultation) || empty($online_sales_email) || empty($phone_hanoi) || empty($phone_danang) || empty($phone_hcm) || empty($common_email)) {
         echo "All fields must be filled out.";
+        exit;
+    }
+
+    // Validate email format
+    if (!filter_var($online_sales_email, FILTER_VALIDATE_EMAIL) || !filter_var($common_email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email address.";
         exit;
     }
 
@@ -59,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Commit the transaction
         $pdo->commit();
 
-        header("Location: contactpage.controller.php");
+        header("Location: ../contactpage.controller.php");
     } catch (PDOException $e) {
         // Rollback in case of an error
         $pdo->rollBack();

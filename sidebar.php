@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
             background-color: #212529;
             padding-top: 20px;
         }
+
         .sidebar .nav-link {
             color: #fff;
             padding: 10px 20px;
@@ -21,15 +23,19 @@
             border-radius: 5px;
             transition: all 0.3s;
         }
+
         .sidebar .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
+
         .sidebar .nav-link.active {
             background-color: #0d6efd;
         }
+
         .sidebar .nav-link i {
             margin-right: 10px;
         }
+
         .sidebar-header {
             padding: 20px;
             color: white;
@@ -39,6 +45,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
@@ -70,15 +77,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="order-manager.php" class="nav-link">
-                    <i class="bi bi-cart"></i>
-                    Đơn Hàng
+                <a href="mainpage.controller.php" class="nav-link">
+                    <i class="bi bi-house-door-fill"></i>
+                    Trang Chủ
                 </a>
             </li>
             <li class="nav-item">
-                <a href="inventory-receiving-voucher-manager.php" class="nav-link">
-                    <i class="bi bi-receipt"></i>
-                    Phiếu Nhập
+                <a href="contactpage.controller.php" class="nav-link">
+                    <i class="bi bi-telephone-fill"></i>
+                    Liên Hệ
                 </a>
             </li>
             <li class="nav-item">
@@ -131,4 +138,5 @@
         });
     </script>
 </body>
-</html> 
+
+</html>

@@ -30,6 +30,7 @@ $technicalSupport = $stmt_technicalSupport->fetchAll(PDO::FETCH_ASSOC);
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <link rel="stylesheet" href="components/header.css">
+    <link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>

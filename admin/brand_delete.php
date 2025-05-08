@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
     $stmt->execute([$brandId]);
 
     // Redirect back to the brand list or another page
-    header("Location: mainpage.controller.php");
+    header("Location: ../mainpage.controller.php");
     exit;
 } else {
     echo "No brand ID provided.";

@@ -21,6 +21,6 @@ if (isset($_GET['id'])) {
     }
 }
 
-header("Location: mainpage.controller.php");
+header("Location: ../mainpage.controller.php");
 exit;
 ?>

@@ -3,10 +3,10 @@ require '../database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get form data
-    $customer_care_email = $_POST['customer_care_email'] ?? '';
-    $customer_care_hotline = $_POST['customer_care_hotline'] ?? '';
-    $customer_care_zalo = $_POST['customer_care_zalo'] ?? '';
-    $customer_care_facebook = $_POST['customer_care_facebook'] ?? '';
+    $customer_care_email = trim($_POST['customer_care_email'] ?? '');
+    $customer_care_hotline = trim($_POST['customer_care_hotline'] ?? '');
+    $customer_care_zalo = trim($_POST['customer_care_zalo'] ?? '');
+    $customer_care_facebook = trim($_POST['customer_care_facebook'] ?? '');
 
     // Validate input data
     if (empty($customer_care_email) || empty($customer_care_hotline) || empty($customer_care_zalo) || empty($customer_care_facebook)) {
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Commit the transaction
         $pdo->commit();
 
-        header("Location: contactpage.controller.php");
+        header("Location: ../contactpage.controller.php");
     } catch (PDOException $e) {
         // Rollback in case of an error
         $pdo->rollBack();
