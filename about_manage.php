@@ -6,17 +6,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         if (isset($_POST['update_company_info'])) {
             $description = $_POST['description'];
-            $banner_data = $company_info['banner_data'] ?? null;
-            $about_image_data = $company_info['about_image_data'] ?? null;
+            $banner_filename = $company_info['banner_filename'] ?? null;
+            $about_image_filename = $company_info['about_image_filename'] ?? null;
             
             // Handle banner upload
             if (isset($_FILES['banner']) && $_FILES['banner']['error'] === UPLOAD_ERR_OK) {
-                $banner_data = file_get_contents($_FILES['banner']['tmp_name']);
+                $banner_filename = 'assets/img/' . time() . '_' . $_FILES['banner']['name'];
+                move_uploaded_file($_FILES['banner']['tmp_name'], $banner_filename);
             }
             
             // Handle about image upload
             if (isset($_FILES['about_image']) && $_FILES['about_image']['error'] === UPLOAD_ERR_OK) {
-                $about_image_data = file_get_contents($_FILES['about_image']['tmp_name']);
+                $about_image_filename = 'assets/img/' . time() . '_' . $_FILES['about_image']['name'];
+                move_uploaded_file($_FILES['about_image']['tmp_name'], $about_image_filename);
             }
 
             // Check if company_info record exists
@@ -25,19 +27,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($exists) {
                 // Update existing record
-                $stmt = $pdo->prepare("UPDATE company_info SET description = :description, banner_data = :banner_data, about_image_data = :about_image_data WHERE id = 1");
+                $stmt = $pdo->prepare("UPDATE company_info SET description = :description, banner_filename = :banner_filename, about_image_filename = :about_image_filename WHERE id = 1");
                 $result = $stmt->execute([
                     ':description' => $description,
-                    ':banner_data' => $banner_data,
-                    ':about_image_data' => $about_image_data
+                    ':banner_filename' => $banner_filename,
+                    ':about_image_filename' => $about_image_filename
                 ]);
             } else {
                 // Insert new record
-                $stmt = $pdo->prepare("INSERT INTO company_info (id, description, banner_data, about_image_data) VALUES (1, :description, :banner_data, :about_image_data)");
+                $stmt = $pdo->prepare("INSERT INTO company_info (id, description, banner_filename, about_image_filename) VALUES (1, :description, :banner_filename, :about_image_filename)");
                 $result = $stmt->execute([
                     ':description' => $description,
-                    ':banner_data' => $banner_data,
-                    ':about_image_data' => $about_image_data
+                    ':banner_filename' => $banner_filename,
+                    ':about_image_filename' => $about_image_filename
                 ]);
             }
 
@@ -100,9 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['add_commitment'])) {
             $title = $_POST['title'];
             $description = $_POST['description'];
+            $sort_order = $_POST['sort_order'] ?? 0;
             
-            $stmt = $pdo->prepare("INSERT INTO commitments (title, description) VALUES (?, ?)");
-            if ($stmt->execute([$title, $description])) {
+            $stmt = $pdo->prepare("INSERT INTO commitments (title, description, sort_order) VALUES (?, ?, ?)");
+            if ($stmt->execute([$title, $description, $sort_order])) {
                 $message = "Đã thêm mới cam kết thành công!";
             }
         }
@@ -111,9 +114,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
             $title = $_POST['title'];
             $description = $_POST['description'];
+            $sort_order = $_POST['sort_order'] ?? 0;
             
-            $stmt = $pdo->prepare("UPDATE commitments SET title = ?, description = ? WHERE id = ?");
-            if ($stmt->execute([$title, $description, $id])) {
+            $stmt = $pdo->prepare("UPDATE commitments SET title = ?, description = ?, sort_order = ? WHERE id = ?");
+            if ($stmt->execute([$title, $description, $sort_order, $id])) {
                 $message = "Đã cập nhật cam kết thành công!";
             }
         }
@@ -124,13 +128,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = $_POST['description'];
             
             // Handle image upload
-            $image_data = null;
+            $image_filename = null;
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $image_data = file_get_contents($_FILES['image']['tmp_name']);
+                $image_filename = 'assets/img/' . time() . '_' . $_FILES['image']['name'];
+                move_uploaded_file($_FILES['image']['tmp_name'], $image_filename);
             }
             
-            $stmt = $pdo->prepare("INSERT INTO team_members (name, position, description, image_data) VALUES (?, ?, ?, ?)");
-            if ($stmt->execute([$name, $position, $description, $image_data])) {
+            $stmt = $pdo->prepare("INSERT INTO team_members (name, position, description, image_filename) VALUES (?, ?, ?, ?)");
+            if ($stmt->execute([$name, $position, $description, $image_filename])) {
                 $message = "Đã thêm mới thành viên thành công!";
             }
         }
@@ -142,13 +147,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $description = $_POST['description'];
             
             // Handle image upload
-            $image_data = null;
+            $image_filename = null;
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $image_data = file_get_contents($_FILES['image']['tmp_name']);
+                $image_filename = 'assets/img/' . time() . '_' . $_FILES['image']['name'];
+                move_uploaded_file($_FILES['image']['tmp_name'], $image_filename);
             }
             
-            $stmt = $pdo->prepare("UPDATE team_members SET name = ?, position = ?, description = ?, image_data = ? WHERE id = ?");
-            if ($stmt->execute([$name, $position, $description, $image_data, $id])) {
+            $stmt = $pdo->prepare("UPDATE team_members SET name = ?, position = ?, description = ?, image_filename = ? WHERE id = ?");
+            if ($stmt->execute([$name, $position, $description, $image_filename, $id])) {
                 $message = "Đã cập nhật thành viên thành công!";
             }
         }
@@ -159,13 +165,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $content = $_POST['content'];
             
             // Handle image upload
-            $image_data = null;
+            $image_filename = null;
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $image_data = file_get_contents($_FILES['image']['tmp_name']);
+                $image_filename = 'assets/img/' . time() . '_' . $_FILES['image']['name'];
+                move_uploaded_file($_FILES['image']['tmp_name'], $image_filename);
             }
             
-            $stmt = $pdo->prepare("INSERT INTO testimonials (customer_name, location, content, image_data) VALUES (?, ?, ?, ?)");
-            if ($stmt->execute([$customer_name, $location, $content, $image_data])) {
+            $stmt = $pdo->prepare("INSERT INTO testimonials (customer_name, location, content, image_filename) VALUES (?, ?, ?, ?)");
+            if ($stmt->execute([$customer_name, $location, $content, $image_filename])) {
                 $message = "Đã thêm mới đánh giá khách hàng thành công!";
             }
         }
@@ -177,13 +184,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $content = $_POST['content'];
             
             // Handle image upload
-            $image_data = null;
+            $image_filename = null;
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $image_data = file_get_contents($_FILES['image']['tmp_name']);
+                $image_filename = 'assets/img/' . time() . '_' . $_FILES['image']['name'];
+                move_uploaded_file($_FILES['image']['tmp_name'], $image_filename);
             }
             
-            $stmt = $pdo->prepare("UPDATE testimonials SET customer_name = ?, location = ?, content = ?, image_data = ? WHERE id = ?");
-            if ($stmt->execute([$customer_name, $location, $content, $image_data, $id])) {
+            $stmt = $pdo->prepare("UPDATE testimonials SET customer_name = ?, location = ?, content = ?, image_filename = ? WHERE id = ?");
+            if ($stmt->execute([$customer_name, $location, $content, $image_filename, $id])) {
                 $message = "Đã cập nhật đánh giá khách hàng thành công!";
             }
         }
@@ -411,9 +419,9 @@ try {
                                         <label for="banner" class="form-label">Banner</label>
                                         <input type="file" name="banner" id="banner" class="form-control" accept="image/*">
                                         <div id="bannerPreview" class="mt-2">
-                                            <?php if(!empty($company_info['banner_data'])): ?>
+                                            <?php if(!empty($company_info['banner_filename'])): ?>
                                                 <div class="image-preview">
-                                                    <img src="data:image/jpeg;base64,<?= base64_encode($company_info['banner_data']) ?>" class="img-thumbnail" style="max-height: 200px;">
+                                                    <img src="<?= htmlspecialchars($company_info['banner_filename']) ?>" class="img-thumbnail" style="max-height: 200px;">
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -424,9 +432,9 @@ try {
                                         <label for="about_image" class="form-label">Ảnh giới thiệu</label>
                                         <input type="file" name="about_image" id="about_image" class="form-control" accept="image/*">
                                         <div id="aboutImagePreview" class="mt-2">
-                                            <?php if(!empty($company_info['about_image_data'])): ?>
+                                            <?php if(!empty($company_info['about_image_filename'])): ?>
                                                 <div class="image-preview">
-                                                    <img src="data:image/jpeg;base64,<?= base64_encode($company_info['about_image_data']) ?>" class="img-thumbnail" style="max-height: 200px;">
+                                                    <img src="<?= htmlspecialchars($company_info['about_image_filename']) ?>" class="img-thumbnail" style="max-height: 200px;">
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -790,8 +798,10 @@ try {
                                     <?php foreach ($team_members as $tm): ?>
                                     <tr>
                                         <td>
-                                            <?php if(!empty($tm['image_data'])): ?>
-                                                <img src="data:image/jpeg;base64,<?= base64_encode($tm['image_data']) ?>" alt="<?= htmlspecialchars($tm['name']) ?>" class="img-thumbnail" style="max-width: 100px; max-height: 100px; object-fit: cover;">
+                                            <?php if(!empty($tm['image_filename'])): ?>
+                                                <div class="image-preview">
+                                                    <img src="<?= htmlspecialchars($tm['image_filename']) ?>" alt="<?= htmlspecialchars($tm['name']) ?>" class="img-thumbnail" style="max-width: 100px; max-height: 100px; object-fit: cover;">
+                                                </div>
                                             <?php else: ?>
                                                 <div class="bg-light rounded p-2 text-center" style="width: 100px; height: 100px;">
                                                     <i class="bi bi-person text-secondary" style="font-size: 2rem;"></i>
@@ -842,9 +852,9 @@ try {
                                                         <div class="mb-3">
                                                             <label class="form-label">Hình ảnh</label>
                                                             <input type="file" name="image" class="form-control" accept="image/*">
-                                                            <?php if(!empty($tm['image_data'])): ?>
+                                                            <?php if(!empty($tm['image_filename'])): ?>
                                                                 <div class="mt-2">
-                                                                    <img src="data:image/jpeg;base64,<?= base64_encode($tm['image_data']) ?>" class="img-thumbnail" style="max-height: 200px;">
+                                                                    <img src="<?= htmlspecialchars($tm['image_filename']) ?>" class="img-thumbnail" style="max-height: 200px;">
                                                                 </div>
                                                             <?php endif; ?>
                                                         </div>
@@ -925,8 +935,10 @@ try {
                                     <?php foreach ($testimonials as $t): ?>
                                     <tr>
                                         <td>
-                                            <?php if(!empty($t['image_data'])): ?>
-                                                <img src="data:image/jpeg;base64,<?= base64_encode($t['image_data']) ?>" alt="<?= htmlspecialchars($t['customer_name']) ?>" class="img-thumbnail" style="max-width: 100px; max-height: 100px; object-fit: cover;">
+                                            <?php if(!empty($t['image_filename'])): ?>
+                                                <div class="image-preview">
+                                                    <img src="<?= htmlspecialchars($t['image_filename']) ?>" alt="<?= htmlspecialchars($t['customer_name']) ?>" class="img-thumbnail" style="max-width: 100px; max-height: 100px; object-fit: cover;">
+                                                </div>
                                             <?php else: ?>
                                                 <div class="bg-light rounded p-2 text-center" style="width: 100px; height: 100px;">
                                                     <i class="bi bi-person text-secondary" style="font-size: 2rem;"></i>
@@ -977,9 +989,9 @@ try {
                                                         <div class="mb-3">
                                                             <label class="form-label">Hình ảnh</label>
                                                             <input type="file" name="image" class="form-control" accept="image/*">
-                                                            <?php if(!empty($t['image_data'])): ?>
+                                                            <?php if(!empty($t['image_filename'])): ?>
                                                                 <div class="mt-2">
-                                                                    <img src="data:image/jpeg;base64,<?= base64_encode($t['image_data']) ?>" class="img-thumbnail" style="max-height: 200px;">
+                                                                    <img src="<?= htmlspecialchars($t['image_filename']) ?>" class="img-thumbnail" style="max-height: 200px;">
                                                                 </div>
                                                             <?php endif; ?>
                                                         </div>
@@ -1249,8 +1261,8 @@ try {
             document.querySelector('#teamMemberForm input[name="name"]').value = data.name;
             document.querySelector('#teamMemberForm input[name="position"]').value = data.position;
             document.querySelector('#teamMemberForm textarea[name="description"]').value = data.description;
-            if (data.image_data) {
-                document.getElementById('teamMemberImagePreview').innerHTML = `<img src="data:image/jpeg;base64,${btoa(String.fromCharCode.apply(null, new Uint8Array(data.image_data)))}" class="img-thumbnail" style="max-height: 200px;">`;
+            if (data.image_filename) {
+                document.getElementById('teamMemberImagePreview').innerHTML = `<img src="${data.image_filename}" class="img-thumbnail" style="max-height: 200px;">`;
             }
             document.getElementById('teamMemberSubmit').name = 'edit_team_member';
             document.getElementById('teamMemberSubmit').innerHTML = '<i class="bi bi-save"></i> Cập nhật';
@@ -1271,8 +1283,8 @@ try {
             document.querySelector('#testimonialForm input[name="customer_name"]').value = data.customer_name;
             document.querySelector('#testimonialForm input[name="location"]').value = data.location;
             document.querySelector('#testimonialForm textarea[name="content"]').value = data.content;
-            if (data.image_data) {
-                document.getElementById('testimonialImagePreview').innerHTML = `<img src="data:image/jpeg;base64,${btoa(String.fromCharCode.apply(null, new Uint8Array(data.image_data)))}" class="img-thumbnail" style="max-height: 200px;">`;
+            if (data.image_filename) {
+                document.getElementById('testimonialImagePreview').innerHTML = `<img src="${data.image_filename}" class="img-thumbnail" style="max-height: 200px;">`;
             }
             document.getElementById('testimonialSubmit').name = 'edit_testimonial';
             document.getElementById('testimonialSubmit').innerHTML = '<i class="bi bi-save"></i> Cập nhật';

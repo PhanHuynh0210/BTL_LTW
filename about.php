@@ -33,8 +33,8 @@ $testimonials = $pdo->query("SELECT * FROM testimonials ORDER BY sort_order ASC"
         <main>
         <!-- Hero Section -->
         <div class="hero-section">
-            <?php if(!empty($company_info['banner_data'])): ?>
-                <img src="data:image/jpeg;base64,<?= base64_encode($company_info['banner_data']) ?>" alt="Banner">
+            <?php if(!empty($company_info['banner_filename'])): ?>
+                <img src="<?= htmlspecialchars($company_info['banner_filename']) ?>" alt="Banner">
             <?php endif; ?>
             <div class="hero-overlay">
                 <div class="container">
@@ -49,8 +49,8 @@ $testimonials = $pdo->query("SELECT * FROM testimonials ORDER BY sort_order ASC"
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <?php if(!empty($company_info['about_image_data'])): ?>
-                            <img src="data:image/jpeg;base64,<?= base64_encode($company_info['about_image_data']) ?>" alt="About Us" class="img-fluid rounded">
+                        <?php if(!empty($company_info['about_image_filename'])): ?>
+                            <img src="<?= htmlspecialchars($company_info['about_image_filename']) ?>" alt="About Us" class="img-fluid rounded">
                         <?php endif; ?>
                     </div>
                     <div class="col-md-6">
@@ -112,8 +112,8 @@ $testimonials = $pdo->query("SELECT * FROM testimonials ORDER BY sort_order ASC"
                     <?php foreach ($commitments as $c): ?>
                     <div class="col-md-4 mb-4">
                         <div class="commitment-card">
-                            <?php if(!empty($c['image_data'])): ?>
-                                <img src="data:image/jpeg;base64,<?= base64_encode($c['image_data']) ?>" alt="<?= htmlspecialchars($c['title']) ?>">
+                            <?php if(!empty($c['image_path'])): ?>
+                                <img src="<?= htmlspecialchars($c['image_path']) ?>" alt="<?= htmlspecialchars($c['title']) ?>">
                             <?php endif; ?>
                             <h3><?php echo htmlspecialchars($c['title']); ?></h3>
                             <p><?php echo nl2br(htmlspecialchars($c['description'])); ?></p>
@@ -135,8 +135,8 @@ $testimonials = $pdo->query("SELECT * FROM testimonials ORDER BY sort_order ASC"
                     <?php foreach ($team_members as $tm): ?>
                     <div class="col-md-4 mb-4">
                         <div class="team-member-card">
-                            <?php if(!empty($tm['image_data'])): ?>
-                                <img src="data:image/jpeg;base64,<?= base64_encode($tm['image_data']) ?>" alt="<?= htmlspecialchars($tm['name']) ?>">
+                            <?php if(!empty($tm['image_filename'])): ?>
+                                <img src="<?= htmlspecialchars($tm['image_filename']) ?>" alt="<?= htmlspecialchars($tm['name']) ?>">
                             <?php endif; ?>
                             <h3><?php echo htmlspecialchars($tm['name']); ?></h3>
                             <p class="text-muted"><?php echo htmlspecialchars($tm['position']); ?></p>
@@ -159,8 +159,8 @@ $testimonials = $pdo->query("SELECT * FROM testimonials ORDER BY sort_order ASC"
                     <?php foreach ($testimonials as $t): ?>
                     <div class="col-md-4 mb-4">
                         <div class="testimonial-card">
-                            <?php if(!empty($t['image_data'])): ?>
-                                <img src="data:image/jpeg;base64,<?= base64_encode($t['image_data']) ?>" alt="<?= htmlspecialchars($t['customer_name']) ?>">
+                            <?php if(!empty($t['image_filename'])): ?>
+                                <img src="<?= htmlspecialchars($t['image_filename']) ?>" alt="<?= htmlspecialchars($t['customer_name']) ?>">
                             <?php endif; ?>
                             <p class="mb-3"><?php echo nl2br(htmlspecialchars($t['content'])); ?></p>
                             <h4><?php echo htmlspecialchars($t['customer_name']); ?></h4>
