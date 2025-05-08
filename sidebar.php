@@ -71,9 +71,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="product-manage.php" class="nav-link">
-                    <i class="bi bi-watch"></i>
-                    Đồng Hồ
+                <a href="userinfo.controller.php" class="nav-link">
+                    <i class="bi bi-person-circle"></i>
+                    Liên Hệ Khách Hàng
                 </a>
             </li>
             <li class="nav-item">
@@ -85,7 +85,7 @@
             <li class="nav-item">
                 <a href="contactpage.controller.php" class="nav-link">
                     <i class="bi bi-telephone-fill"></i>
-                    Liên Hệ
+                    Thông Tin Liên Hệ
                 </a>
             </li>
             <li class="nav-item">
