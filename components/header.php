@@ -54,7 +54,7 @@ echo <<<HTML
 
             <!-- Icons and Login -->
             <div class="contact d-flex align-items-center justify-content-end">
-                <a href="#" class="me-3"><i class="fa-regular fa-circle-question fa-lg"></i></a>
+                <a href="faq.php" class="me-3"><i class="fa-regular fa-circle-question fa-lg"></i></a>
                 <a href="#" class="me-3">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24"
