@@ -192,3 +192,12 @@ p {
     border-radius: 50%;
     margin-bottom: 20px;
 }
+.lead {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+.mb-0 {
+    color: #cecece;
+}
