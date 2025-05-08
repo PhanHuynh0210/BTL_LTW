@@ -2,24 +2,12 @@
 require 'database.php';
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 $sql = "SELECT * FROM posts";
-
-if (!empty($search)) {
-    $sql .= " WHERE title LIKE :keyword OR description LIKE :keyword";
-}
 $stmt = $pdo->prepare($sql);
-
-if (!empty($search)) {
-    $stmt->execute(['keyword' => "%$search%"]);
-} else {
-    $stmt->execute();
-}
-
+$stmt->execute();
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php
-require 'database.php';
-
 $sql = "SELECT * FROM banner";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -32,7 +20,7 @@ $carouselImages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Store</title>
+    <title>Trang chủ</title>
     <link rel="icon" type="image/x-icon" href="assets/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -430,8 +418,6 @@ $carouselImages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <?php
-    require 'database.php';  // Include the database connection file
-
     // Fetch all phone brands
     $sql_brands = "SELECT * FROM phone_brands";
     $stmt_brands = $pdo->prepare($sql_brands);
@@ -466,8 +452,6 @@ $carouselImages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <?php
-    require 'database.php';  // Include your database connection file
-
     // Fetch all brands from the phone_brands table
     $sql_brands = "SELECT * FROM phone_brands";
     $stmt_brands = $pdo->query($sql_brands);

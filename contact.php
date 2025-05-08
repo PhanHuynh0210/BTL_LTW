@@ -1,41 +1,20 @@
 <?php
-// Database connection details
-$host = 'localhost';  // Database host (usually localhost)
-$dbname = 'news';  // Database name
-$username = 'root';  // Database username
-$password = '210924';  // Database password
-
-// Create connection using mysqli
-$conn = mysqli_connect($host, $username, $password, $dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require 'database.php';  
 
 // Fetching the "Bán hàng online" contact information
-$onlineSalesQuery = "SELECT label, value FROM contact_info WHERE contact_type_id = 1";
-$onlineSalesResult = mysqli_query($conn, $onlineSalesQuery);
-$onlineSales = [];
-while ($row = mysqli_fetch_assoc($onlineSalesResult)) {
-    $onlineSales[] = $row;
-}
+$sql_onlineSales = "SELECT label, value FROM contact_info WHERE contact_type_id = 1";
+$stmt_onlineSales = $pdo->query($sql_onlineSales);
+$onlineSales = $stmt_onlineSales->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetching the "Chăm sóc khách hàng" contact information
-$customerCareQuery = "SELECT label, value FROM contact_info WHERE contact_type_id = 2";
-$customerCareResult = mysqli_query($conn, $customerCareQuery);
-$customerCare = [];
-while ($row = mysqli_fetch_assoc($customerCareResult)) {
-    $customerCare[] = $row;
-}
+$sql_customerCare = "SELECT label, value FROM contact_info WHERE contact_type_id = 2";
+$stmt_customerCare = $pdo->query($sql_customerCare);
+$customerCare = $stmt_customerCare->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetching the "Hỗ trợ kỹ thuật" contact addresses
-$technicalSupportQuery = "SELECT region, address, phone FROM contact_addresses WHERE contact_type_id = 3";
-$technicalSupportResult = mysqli_query($conn, $technicalSupportQuery);
-$technicalSupport = [];
-while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
-    $technicalSupport[] = $row;
-}
+$sql_technicalSupport = "SELECT region, address, phone FROM contact_addresses WHERE contact_type_id = 3";
+$stmt_technicalSupport = $pdo->query($sql_technicalSupport);
+$technicalSupport = $stmt_technicalSupport->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +22,7 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Store</title>
+    <title>Liên hệ</title>
     <link rel="icon" type="image/x-icon" href="assets/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link
@@ -51,8 +30,6 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <link rel="stylesheet" href="components/header.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <!-- <link rel="stylesheet" href="pages/contact/contact.css"> -->
 </head>
 
 <body>
@@ -68,7 +45,6 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
             <div class="card-body">
                 <h2 class="card-title text-primary">Bán hàng online</h2>
                 <p>Tư vấn & Mua hàng trực tuyến: <?php
-                                                    // Displaying regional phone numbers for Online Sales
                                                     foreach ($onlineSales as $contact) {
                                                         if ($contact['label'] == 'Tư vấn & Mua hàng trực tuyến') {
                                                             echo "<strong>{$contact['value']}</strong>";
@@ -78,7 +54,6 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
                 <p class="mb-1">Số điện thoại liên hệ:</p>
                 <ul class="ps-3">
                     <?php
-                    // Displaying regional phone numbers for Online Sales
                     foreach ($onlineSales as $contact) {
                         if ($contact['label'] == 'Hà Nội' || $contact['label'] == 'Đà Nẵng' || $contact['label'] == 'TP.Hồ Chí Minh') {
                             echo "<li>{$contact['label']}: {$contact['value']}</li>";
@@ -87,7 +62,6 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
                     ?>
                 </ul>
                 <?php
-                // Displaying emails for Online Sales
                 foreach ($onlineSales as $contact) {
                     if ($contact['label'] == 'Email hỗ trợ bán hàng Online' || $contact['label'] == 'Email hỗ trợ chung') {
                         echo "<p>Email hỗ trợ {$contact['label']}: <a href='mailto:{$contact['value']}'>{$contact['value']}</a></p>";
@@ -106,7 +80,6 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
                 <p>Quý khách vui lòng liên hệ qua:</p>
                 <ul class="ps-3">
                     <?php
-                    // Displaying Customer Care contact information
                     foreach ($customerCare as $contact) {
                         echo "<li>{$contact['label']}: <a href='mailto:{$contact['value']}'>{$contact['value']}</a></li>";
                     }
@@ -121,7 +94,6 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
                 <h2 class="card-title text-primary">Hỗ trợ kỹ thuật</h2>
                 <ul class="ps-3">
                     <?php
-                    // Displaying Technical Support addresses and phone numbers
                     foreach ($technicalSupport as $address) {
                         echo "<li>{$address['region']}: {$address['address']} (SĐT {$address['phone']})</li>";
                     }
@@ -129,11 +101,6 @@ while ($row = mysqli_fetch_assoc($technicalSupportResult)) {
                 </ul>
             </div>
         </div>
-
-        <?php
-        // Close the database connection
-        mysqli_close($conn);
-        ?>
 
         <!-- Online Sales -->
         <!-- <div class="card contact-card mb-4">
