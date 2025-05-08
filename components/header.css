@@ -1,0 +1,53 @@
+/* Overall Header */
+header {
+    background-color: #add8e6;
+    /* Light Blue */
+    border-bottom: 2px solid #87ceeb;
+    /* Slightly darker blue for separation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo Title */
+header h4 {
+    color: #004080;
+    /* Deep blue for contrast */
+}
+
+/* Navigation & Icons */
+.contact a {
+    padding: 0 12px;
+    text-decoration: none;
+    color: #003366;
+    /* Darker blue text */
+    font-weight: 500;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Border between links (except the last one) */
+.contact a:not(:last-child) {
+    border-right: 2px solid #0077b6;
+    /* Muted blue border */
+}
+
+/* Hover Effect */
+.contact a:hover {
+    transform: translateY(-2px);
+    color: #d6336c;
+    /* Soft red-pink on hover */
+}
+
+/* Border color also changes on hover */
+.contact a:not(:last-child):hover {
+    border-right-color: #d6336c;
+}
+
+/* Active Link */
+.contact a.active {
+    font-weight: bold;
+    color: #800080;
+    /* Plum */
+    border: 2px solid #800080;
+}
