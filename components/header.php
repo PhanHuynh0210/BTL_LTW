@@ -68,7 +68,7 @@ echo <<<HTML
                         .75.75 0 011.5 0z" />
                     </svg>
                 </a>
-                <a href="#" class="fw-medium">Đăng Nhập</a>
+                <a href="login.php" class="fw-medium">Đăng Nhập</a>
             </div>
         </div>
     </div>
