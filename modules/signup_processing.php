@@ -22,7 +22,7 @@ echo $diaChiNha = $_REQUEST['diaChiNha']; */
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "vutrudongho";
+$dbname = "didongthongminh";
 
 
 // Create connection

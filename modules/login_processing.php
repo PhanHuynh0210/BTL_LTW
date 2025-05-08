@@ -7,7 +7,7 @@ $pass = $_REQUEST['passWord'];
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "vutrudongho";
+$dbname = "didongthongminh";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
