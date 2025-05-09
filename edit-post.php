@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label>Ảnh hiện tại</label><br>
                 <?php if ($post['image']): ?>
-                    <img src="../<?= $post['image'] ?>" alt="Ảnh bài viết" style="max-height: 150px;">
+                    <img src="<?= $post['image'] ?>" alt="Ảnh bài viết" style="max-height: 150px;">
                 <?php else: ?>
                     <p>Không có ảnh.</p>
                 <?php endif; ?>

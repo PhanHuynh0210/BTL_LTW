@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slug = generateSlug($title);
 
     $image = null;
-    $uploadDir = '../image/';
+    $uploadDir = 'image/';
     $imagePathInDb = null;
 
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
