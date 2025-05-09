@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = trim($_POST['description']);
     $image = $post['image']; // giữ ảnh cũ nếu không upload mới
 
-    $uploadDir = '../image/';
+    $uploadDir = 'image/';
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
     $maxFileSize = 2 * 1024 * 1024; // 2MB
 

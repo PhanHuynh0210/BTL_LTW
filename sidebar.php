@@ -53,9 +53,9 @@
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="statistic.php" class="nav-link">
+                <a href="news-management.php" class="nav-link">
                     <i class="bi bi-graph-up"></i>
-                    Thống Kê
+                    Tin Tức
                 </a>
             </li>
             <li class="nav-item">
@@ -127,7 +127,7 @@
         }
 
         // Add active class to current page link
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
