@@ -15,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slug = generateSlug($title);
 
     $image = null;
-    // Nếu file xử lý nằm trong thư mục admin, thì cần ../ để upload ra ngoài
-    $uploadDir = '../image/';
+    $uploadDir = 'image/';
     $imagePathInDb = null;
 
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
@@ -99,6 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="news-management.php" class="btn btn-secondary">Quay lại</a>
         </form>
     </div>
+    
 </body>
-
 </html>

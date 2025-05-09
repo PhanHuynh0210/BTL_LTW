@@ -66,7 +66,7 @@
         </div>
 
         <button type="submit" class="btn btn-success">Thêm người dùng</button>
-        <a href="user_management.php" class="btn btn-secondary">Hủy</a>
+        <a href="userinfo.controller.php" class="btn btn-secondary">Hủy</a>
     </form>
 </div>
 
