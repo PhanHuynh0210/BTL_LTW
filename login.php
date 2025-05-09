@@ -1,5 +1,5 @@
 <?php
-require_once('lib_session.php');
+require_once __DIR__ . '/lib_session.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +71,7 @@ require_once('lib_session.php');
       } else {
         echo '
         <div style="width: 50%;height: 100%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <form style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;" name="frm" id="" action=".//modules/login_processing.php" method="POST" onsubmit="return kiemTra();">
+        <form style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;" name="frm" id="" action="modules/login_processing.php" method="POST" onsubmit="return kiemTra();">
         <div class="containerlogin-group1" style="display:flex;flex-direction:column;align-items:center;justify-content:center;"> 
           <div style="width:90%;height:90%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
           <span class="containerlogin-text LabelMedium">

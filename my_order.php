@@ -1,5 +1,5 @@
 <?php
-require_once('lib_session.php');
+require_once __DIR__ . '/lib_session.php';
 ?>
 <?php
 $userID = $_SESSION['current_userID'];

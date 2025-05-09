@@ -1,5 +1,8 @@
 <?php
-require_once('../lib_session.php');
+
+// __DIR__ ở đây là ...\BTL_LTW\modules
+require_once __DIR__ . '/../lib_session.php';
+
 
 $user = $_REQUEST['userName'];
 $pass = $_REQUEST['passWord'];
@@ -63,15 +66,18 @@ if (mysqli_num_rows($result) == 1 || mysqli_num_rows($resultMail) == 1 ) {
 		session_start();
         $_SESSION['loginSuccess'] = true;
 		//
-		header('location: ../../index.php');
+		header('Location: /BTL_LTW/index.php');
+		exit;
+
 	}
 		//nếu status = 0 tức là tk bị khóa
 		else{
 			$errorLogin = "Tài khoản của bạn bị khóa!";
 			session_start();
 			$_SESSION['errorLogin'] = $errorLogin;
-			header("Location: ../../login.php?errorLogin=" . urlencode($errorLogin));
-			exit();
+			header('Location: /BTL_LTW/login.php?errorLogin=' . urlencode($errorLogin));
+			exit;
+
 		}
 	} else {
 		//echo 'Sai password';

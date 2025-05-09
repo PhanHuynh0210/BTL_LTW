@@ -15,9 +15,9 @@ $cartCount = isset($_SESSION['cart']) && is_array($_SESSION['cart'])
 // 3. Xác định HTML cho login/logout, dùng trực tiếp $_SESSION['current_fullName']
 if (isAdminLogged()) {
     $loginHtml = '<span class="me-3">Xin chào, ' . htmlspecialchars($_SESSION['current_fullName']) . '</span>'
-               . '<a href="../logout.php?isAdmin=1" class="fw-medium">Đăng Xuất</a>';
+               . '<a href="/BTL_LTW/logout.php?isAdmin=1" class="fw-medium">Đăng Xuất</a>';
 } else {
-    $loginHtml = '<a href="../login.php" class="fw-medium">Đăng Nhập</a>';
+    $loginHtml = '<a href="/BTL_LTW/login.php" class="fw-medium">Đăng Nhập</a>';
 }
 
 // 4. Xây dựng navigation
@@ -44,7 +44,7 @@ foreach ($navItems as $file => $label) {
       
       <!-- Logo và Title -->
       <div class="d-flex align-items-center mb-2 mb-md-0">
-        <img src="../assets/logo.png" alt="Logo" width="60" height="60">
+        <img src="/BTL_LTW/assets/logo.png" alt="Logo" width="60" height="60">
         <h4 class="m-0 fw-bold ms-2">DiDongThongMinh</h4>
       </div>
 
@@ -59,12 +59,12 @@ foreach ($navItems as $file => $label) {
         
 
         <!-- Orders icon -->
-        <a href="my_order.php" class="me-3 text-dark">
+        <a href="/BTL_LTW/my_order.php" class="me-3 text-dark">
           <i class="fa-solid fa-box fa-lg"></i>
         </a>
 
         <!-- Cart icon với badge số lượng -->
-        <a href="cart.php" class="me-3 position-relative text-dark">
+        <a href="/BTL_LTW/cart.php" class="me-3 position-relative text-dark">
           <i class="fa-solid fa-cart-shopping fa-lg"></i>
           <?php if ($cartCount > 0): ?>
             <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
